@@ -26,11 +26,41 @@ public class AppClienteBanco {
                     System.out.println("Digite o número da conta:");
                     String conta = entrada.next();
                     //chamada ao método remoto, como se fosse executar localmente
-                    System.out.println(banco.saldo(conta));
+                    double valor = banco.saldo(conta);
+                    System.out.println("Conta: " + conta + "; Saldo: " + valor);
+                    break;
                 }
                 case 2: {
                     //chamada ao método remoto, como se fosse executar localmente
-                    System.out.println(banco.quantidadeContas());
+                    System.out.println("Numero de contas: " + banco.quantidadeContas());
+                    break;
+                }
+                case 3: {
+                    System.out.println("Informe o numero da nova conta: ");
+                    String conta = entrada.next();
+                    if (banco.adicionarConta(conta) != null)
+                        System.out.println("Conta criada com sucesso!");
+                    else
+                        System.out.println("Erro na criacao da conta.");
+                    break;
+                }
+                case 4: {
+                    System.out.println("Informe o numero da conta: ");
+                    String conta = entrada.next();
+                    if (banco.pesquisarConta(conta) != null)
+                        System.out.println("Conta: " + conta);
+                    else
+                        System.out.println("Conta inexistente.");
+                    break;
+                }
+                case 5: {
+                    System.out.println("Informe o numero da conta: ");
+                    String conta = entrada.next();
+                    if (banco.removerConta(conta))
+                        System.out.println("Conta removida com sucesso!");
+                    else
+                        System.out.println("Conta nao encontrada.");
+                    break;
                 }
             }
             menu();
@@ -42,6 +72,9 @@ public class AppClienteBanco {
         System.out.println("\n=== BANCO RMI (ou FMI?!) ===");
         System.out.println("1 - Saldo da conta");
         System.out.println("2 - Quantidade de contas");
+        System.out.println("3 - Cadastrar nova conta");
+        System.out.println("4 - Pesquisar conta");
+        System.out.println("5 - Remover conta");
         System.out.println("9 - Sair");
     }
 
